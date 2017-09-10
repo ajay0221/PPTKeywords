@@ -127,6 +127,7 @@ public class KeywordExtractor {
 
 	public static void main(String[] args) throws IOException {
 		String filename = args[0];
+		int k = Integer.parseInt(args[1]);
 		
 		PPTParser pptParser = new PPTParser();
 		Presentation presentation = pptParser.parsePPT(filename);
@@ -137,7 +138,9 @@ public class KeywordExtractor {
 		keywordExtractor.sortKeywords();
 		
 		for (Keyword keyword:keywords) {
+			if (k < 0) break;
 			System.out.println(keyword.getStem() + "\t" + keyword.getFrequency() + "\t" + keyword.getTerms());
+			k--;
 		}
 	}
 
