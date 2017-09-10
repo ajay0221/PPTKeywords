@@ -88,7 +88,7 @@ public class KeywordExtractor {
 	
 	public void addKeywords(String term, int weight) throws IOException {		
 		String stem = stem(term);
-		if (stem != null) {
+		if (stem != null && stem.length() >= 2 && stem.matches("[a-zA-Z]+")) {
 			Keyword keyword = find(keywords, new Keyword(stem.replaceAll("-0", "-")));
 			keyword.add(term.replaceAll("-0", "-"), weight);
 		}
